@@ -1,0 +1,1 @@
+web: PYTHONPATH=/workspace/src:$PYTHONPATH python -m bot.main --mode dry-run --config config.yaml

@@ -1,0 +1,140 @@
+# Trading Bot Configuration
+
+# Trading mode: dry-run, backtest, or live
+# dry-run: Simulate trading without real money
+# backtest: Run backtests on historical data
+# live: Execute real trades (requires confirm_live: true)
+mode: dry-run
+
+# Confirmation required for live trading
+confirm_live: false
+
+# API Credentials
+api_credentials:
+  ccxt:
+    binance:
+      api_key: ""
+      api_secret: ""
+  alpha_vantage:
+    api_key: ""
+  telegram:
+    bot_token: ""
+    chat_id: ""
+  email:
+    smtp_host: ""
+    smtp_port: 587
+    username: ""
+    password: ""
+    from_email: ""
+    to_email: ""
+
+# Assets to trade
+assets:
+  - symbol: BTC/USD
+    type: crypto
+    exchange: binance
+    enabled: true
+    min_trade_size: 0.001
+    max_position_size: 1.0
+  - symbol: ETH/USD
+    type: crypto
+    exchange: binance
+    enabled: true
+    min_trade_size: 0.01
+    max_position_size: 10.0
+
+# Trading strategies
+strategies:
+  - name: SimpleStrategy
+    enabled: true
+    parameters:
+      lookback_period: 50
+      rsi_period: 14
+      rsi_overbought: 70
+      rsi_oversold: 30
+
+# Data providers configuration
+data_providers:
+  primary: mock
+  secondary: null
+  fallback: null
+  failover_enabled: true
+  aggregation_method: median
+
+# Execution configuration
+execution:
+  initial_capital: 10000.0
+  order_type: market
+  order_timeout: 60
+  slippage_percent: 0.1
+  fees:
+    maker: 0.001
+    taker: 0.001
+  max_orders_per_minute: 10
+  min_confidence_threshold: 0.6
+  allow_partial_fills: true
+
+# Backtesting configuration
+backtesting:
+  start_date: "2024-01-01"
+  end_date: "2024-12-31"
+  initial_capital: 10000.0
+  commission: 0.001
+  slippage: 0.001
+
+# Notification settings
+notifications:
+  telegram:
+    enable_notifications: true
+    bot_token: "8515959173:AAEtfUIiBxa5ZHUMzM2mz6s9Yi9No55nOBI"
+    chat_id: "2141325844"
+  email:
+    enable_notifications: false
+    smtp_host: ""
+    smtp_port: 587
+    username: ""
+    password: ""
+    from_email: ""
+    to_email: ""
+  rate_limit: 10
+
+# Logging configuration
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: null
+  rotation: true
+
+# State management
+state_management:
+  enabled: true
+  save_interval: 60
+  storage_path: ./state
+  max_backups: 10
+
+# AI/ML configuration
+ai_ml:
+  enabled: false
+  model_type: random_forest
+  retrain_interval: 86400
+  feature_window: 100
+
+# News sentiment analysis
+news_sentiment:
+  enabled: false
+  rss_feeds: []
+  update_interval: 3600
+
+# Monitoring
+monitoring:
+  enabled: true
+  health_check_interval: 60
+  metrics_retention: 86400
+
+# Advanced settings
+advanced:
+  max_concurrent_orders: 5
+  position_sizing_method: fixed
+  risk_per_trade: 0.02
+  max_drawdown: 0.2
+  use_trailing_stop: false
